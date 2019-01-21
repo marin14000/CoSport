@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">CoSport</string>
+    <string name="_main_title">CO-SPORT</string>
+    <string name="_Date_Button">Date</string>
+    <string name="_time_Picker">Horaires</string>
+    <string name="_val_cal">Validez</string>
+    <string name="name">UserName</string>
+    <string name="add_act_text">Proposer une activitée</string>
+    <string name="profil_text">Profil</string>
+    <string name="param_text">Paramètres</string>
+    <string name="assist_text">Assistance</string>
+    <string name="deco_text">Déconnexion</string>
+    <string name="descr_icon_menu">Icone Menu</string>
+    <string name="act_purpose_descr">Icone ajout</string>
+    <string name="descr_go_profil">Icone Profil</string>
+    <string name="descr_go_param">Icone Paramètres</string>
+    <string name="descr_return_menu">Retour</string>
+    <string name="descr_pict_profil">Photo de profil</string>
+    <string name="text_Participe">J\'y participe !</string>
+    <string name="titleListParti">Liste des participants</string>
+</resources>
