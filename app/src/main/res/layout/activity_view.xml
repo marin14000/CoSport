@@ -25,18 +25,19 @@
             app:srcCompat="@mipmap/escalade" />
 
         <Switch
-            android:id="@+id/switch1"
+            android:id="@+id/swParticipate"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginEnd="24dp"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
+            android:onClick="ClickOnSwitch"
             android:text="@string/text_Participe"
             android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/IconAct" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="181dp"
@@ -99,18 +100,19 @@
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/titleListParti"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch1" />
+            app:layout_constraintTop_toBottomOf="@+id/swParticipate" />
 
         <ScrollView
+            android:id="@+id/scrollView2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="9dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -120,10 +122,50 @@
             app:layout_constraintTop_toBottomOf="@+id/textView6">
 
             <TableLayout
+                android:id="@+id/ListUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
             </TableLayout>
         </ScrollView>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/IconAct">
+
+            <ImageView
+                android:id="@+id/imageCreator"
+                android:layout_width="49dp"
+                android:layout_height="45dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@android:drawable/sym_def_app_icon" />
+
+            <TextView
+                android:id="@+id/Creator"
+                android:layout_width="0dp"
+                android:layout_height="31dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
     </android.support.constraint.ConstraintLayout>
+
 </android.support.constraint.ConstraintLayout>

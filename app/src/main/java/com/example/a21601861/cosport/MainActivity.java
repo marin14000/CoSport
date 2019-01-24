@@ -5,13 +5,10 @@ import android.app.TimePickerDialog.OnTimeSetListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.transition.Fade;
 import android.transition.Scene;
-import android.transition.Slide;
 import android.transition.Transition;
 import android.transition.TransitionManager;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -24,34 +21,25 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import com.example.a21601861.cosport.Activity.ActivityDesc;
+import com.example.a21601861.cosport.Activity.ActivityView;
+import com.example.a21601861.cosport.DATA.DataTest;
+
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends com.example.a21601861.cosport.Listenner {
 
     private final static Calendar calendar=Calendar.getInstance();
     private Map<Integer,ActivityDesc> activityLinkRow=new HashMap<>();
     private String actListChoose="tout";
-
-    private Transition slideTransition;
-    private Scene scene_menu;
     private Transition fadeTransition;
     private Scene scene_cal;
 
-    private static Calendar test=Calendar.getInstance();
-    static{test.set(2019,0,18,18,0);}
-    private static Calendar test2=Calendar.getInstance();
-    static{test2.set(2019,1,9,18,0);}
-    private static Calendar test3=Calendar.getInstance();
-    static{test3.set(2019,2,9,18,0);}
-    private static Calendar test4=Calendar.getInstance();
-    static{test4.set(2019,3,9,18,0);}
 
-    private ArrayList<ActivityDesc> activity=new ArrayList<>(Arrays.asList(new ActivityDescImp(R.mipmap.escalade, "Escalade", "suaps",test ), new ActivityDescImp(R.mipmap.marche,"Marche","chemin vert",test2), (ActivityDesc) new ActivityDescImp(R.mipmap.natation,"Natation","suaps",test3),new ActivityDescImp(R.mipmap.velo,"Vélo","campus 2",test4)));
+
     private View.OnClickListener activityClickListenner;
 
 
@@ -92,15 +80,8 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-
-
-
-
-        slideTransition=new Slide(Gravity.RIGHT);
-        slideTransition.setDuration(1000);
         fadeTransition=new Fade();
         fadeTransition.setDuration(250);
-        scene_menu =new Scene((ViewGroup)findViewById(R.id.menu));
         scene_cal =new Scene((ViewGroup)findViewById(R.id._scroll_cal));
 
         refreshActivityTableLayout(calendar,actListChoose);
@@ -109,11 +90,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickListenner(View view){
         switch(view.getId()){
-            case R.id._icon_menu:
-                TransitionManager.go(scene_menu, slideTransition);
-                findViewById(R.id.menu).setVisibility(View.VISIBLE);
-                break;
-
             case R.id._View_Calendar:
                 if(findViewById(R.id._scroll_cal).getVisibility()==View.GONE) {
                     TransitionManager.go(scene_cal, fadeTransition);
@@ -138,11 +114,6 @@ public class MainActivity extends AppCompatActivity {
                 timePicker.show();
                 break;
 
-            case R.id.return_menu:
-                TransitionManager.go(scene_menu, slideTransition);
-                findViewById(R.id.menu).setVisibility(View.GONE);
-                break;
-
         }
     }
 
@@ -164,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         Calendar actCal;
         System.out.println(actName);
         for(int i=0;i<10;i++) {     //affiche 10 fois les meme act pour genere plus d'activite facilement
-            for (ActivityDesc act : activity) {
+            for (ActivityDesc act : DataTest.activity) {
                 if(act.getDate().after(selectCal) && (actName.equals("tout") || actName.equals(act.getName()))) {
                     row = new TableRow(mainActView.getContext());
                     row.setId(View.generateViewId());

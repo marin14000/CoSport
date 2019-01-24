@@ -187,7 +187,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
                 android:contentDescription="@string/descr_return_menu"
-                android:onClick="onClickListenner"
+                android:onClick="onClickOnMenu"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@mipmap/fleche_d" />
@@ -235,7 +235,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
         android:contentDescription="@string/descr_icon_menu"
-        android:onClick="onClickListenner"
+        android:onClick="onClickOnMenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/menu" />
