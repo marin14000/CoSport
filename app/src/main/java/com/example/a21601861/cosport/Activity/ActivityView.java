@@ -1,7 +1,7 @@
 package com.example.a21601861.cosport.Activity;
 
+import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -43,8 +43,9 @@ public class ActivityView extends Listenner {
             if (calAct.get(Calendar.MINUTE) < 10) {
                 minute = "0" + calAct.get(Calendar.MINUTE);
             }
-            ((TextView) findViewById(R.id.hour)).setText("Heure: " + hour + "h" + minute);
+            ((TextView) findViewById(R.id.hour)).setText("Heure : " + hour + "h" + minute);
             ((TextView) findViewById(R.id.date)).setText("Le " + calAct.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()) + " " + calAct.get(Calendar.DAY_OF_MONTH) + " " + calAct.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()) + " " + calAct.get(Calendar.YEAR));
+            ((TextView)findViewById(R.id.place)).setText("A : "+act.getPlace());
             if(this.act.haveUser(DataTest.currentUser.getId())) {
                 ((Switch) findViewById(R.id.swParticipate)).setChecked(true);
             }
@@ -60,13 +61,7 @@ public class ActivityView extends Listenner {
             LinearLayout verLayout=new LinearLayout(row.getContext());
             verLayout.setOrientation(LinearLayout.HORIZONTAL);
             ImageView userImage=new ImageView(verLayout.getContext());
-            if(user.hasURLProfilPicture()){
-                Picasso.with(verLayout.getContext()).load(user.getURLOfProfilPicture()).
-                        resize(200, 200).into(userImage);
-            }
-            else {
-                userImage.setImageResource(R.mipmap.tete);
-            }
+            setUserProfilImage(userImage,verLayout.getContext(),user);
             userImage.setAdjustViewBounds(true);
             userImage.setMaxWidth(200);
             userImage.setMaxHeight(200);
@@ -81,7 +76,7 @@ public class ActivityView extends Listenner {
     }
     private void addCreator(){
         ((TextView)findViewById(R.id.Creator)).setText("Organisateur: "+UserImp.findUserById(act.getCreatorId()).getName());
-        ((ImageView)findViewById(R.id.imageCreator)).setImageResource(UserImp.findUserById(act.getCreatorId()).getProfilPicture());
+        setUserProfilImage(((ImageView)findViewById(R.id.imageCreator)),this,UserImp.findUserById(act.getCreatorId()));
     }
 
     public void ClickOnSwitch(View view){
@@ -92,4 +87,5 @@ public class ActivityView extends Listenner {
             this.act.addUser(DataTest.currentUser.getId());
         }
     }
+
 }

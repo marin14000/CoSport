@@ -1,5 +1,6 @@
 package com.example.a21601861.cosport;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.Scene;
 import android.transition.Slide;
@@ -7,6 +8,10 @@ import android.transition.TransitionManager;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.example.a21601861.cosport.UserPackage.User;
+import com.squareup.picasso.Picasso;
 
 public class Listenner extends AppCompatActivity {
 
@@ -31,7 +36,18 @@ public class Listenner extends AppCompatActivity {
                 findViewById(R.id.menu).setVisibility(View.GONE);
                 break;
 
+            case R.id.deco:
+                AuthActivity.deco(getApplicationContext());
+
         }
 
+    }
+    public void setUserProfilImage(ImageView imageView, Context context, User user){
+        if(user.hasURLProfilPicture()){
+            Picasso.with(context).load(user.getURLOfProfilPicture()).resize(200,200).into(imageView);
+        }
+        else {
+            imageView.setImageResource(user.getProfilPicture());
+        }
     }
 }
