@@ -18,4 +18,7 @@
     <string name="descr_pict_profil">Photo de profil</string>
     <string name="text_Participe">J\'y participe !</string>
     <string name="titleListParti">Liste des participants</string>
+    <string name="mdp">Mots de passe</string>
+    <string name="val">Valider</string>
+    <string name="login">Identifiant:</string>
 </resources>

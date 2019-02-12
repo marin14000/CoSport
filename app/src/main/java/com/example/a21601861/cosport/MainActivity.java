@@ -3,6 +3,7 @@ package com.example.a21601861.cosport;
 import android.app.TimePickerDialog;
 import android.app.TimePickerDialog.OnTimeSetListener;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.transition.Fade;
@@ -24,6 +25,8 @@ import android.widget.TimePicker;
 import com.example.a21601861.cosport.Activity.ActivityDesc;
 import com.example.a21601861.cosport.Activity.ActivityView;
 import com.example.a21601861.cosport.DATA.DataTest;
+
+import org.w3c.dom.Text;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -146,6 +149,9 @@ public class MainActivity extends com.example.a21601861.cosport.Listenner {
                     dateHour = new TextView(cont.getContext());     //creation des widgets
                     title = new TextView(cont.getContext());
                     place = new TextView(cont.getContext());
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        place.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+                    }
                     String hour;
                     String minute;
 
