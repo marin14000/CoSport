@@ -129,6 +129,13 @@ public class MainActivity extends com.example.a21601861.cosport.Listenner {
     public void refreshActivityTableLayout(Calendar selectCal,String actName){
 
         TableLayout mainActView=findViewById(R.id.ContentShow);//Recupere container principale de la liste d'activité
+
+        TableLayout.LayoutParams lp =
+                new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
+                        TableLayout.LayoutParams.WRAP_CONTENT);
+
+        lp.setMargins(10,10,10,10);
+
         TableRow row;
         ImageView image;
         TextView title;                 //initialise a null des widgets pour afficher les infos d'une activité
@@ -143,6 +150,8 @@ public class MainActivity extends com.example.a21601861.cosport.Listenner {
                     row = new TableRow(mainActView.getContext());
                     row.setId(View.generateViewId());
                     row.setOnClickListener(this.activityClickListenner);
+                    row.setBackgroundResource(R.drawable.bottom_border);
+                    row.setLayoutParams(lp);
                     activityLinkRow.put(row.getId(), act);
                     cont = new LinearLayout(row.getContext());
                     image = new ImageView(row.getContext());

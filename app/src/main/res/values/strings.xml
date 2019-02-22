@@ -21,4 +21,6 @@
     <string name="mdp">Mots de passe</string>
     <string name="val">Valider</string>
     <string name="login">Identifiant:</string>
+    <string name="connexion">connexion</string>
+
 </resources>
