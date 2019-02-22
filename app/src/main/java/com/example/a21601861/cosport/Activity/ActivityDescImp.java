@@ -1,10 +1,13 @@
 package com.example.a21601861.cosport.Activity;
 
+import com.example.a21601861.cosport.R;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 public class ActivityDescImp implements ActivityDesc {
 
@@ -77,5 +80,37 @@ public class ActivityDescImp implements ActivityDesc {
     }
     public static ActivityDesc getActivityById(int id){
         return ActivityDescImp.ACTIVITYLIST.get(id);
+    }
+
+    public static int getIcon(String act) {
+        switch (act){
+            case "Vélo":
+                return R.mipmap.velo;
+
+            case "Natation":
+                return R.mipmap.natation;
+
+            case "Escalade":
+                return R.mipmap.escalade;
+
+            case "Marche":
+                return R.mipmap.marche;
+
+            default:
+                return -1;
+
+        }
+    }
+
+    public static ArrayList<ActivityDesc> sort(ArrayList<ActivityDesc> activityUnsorted) {
+        PriorityQueue<ActivityDesc> pq=new PriorityQueue<>(activityUnsorted.size(),new ActivityComparator());
+        for(ActivityDesc act : activityUnsorted){
+            pq.add(act);
+        }
+        ArrayList<ActivityDesc> listact=new ArrayList<>();
+        for(int i=0;i<activityUnsorted.size();i++){
+            listact.add(pq.poll());
+        }
+        return listact;
     }
 }

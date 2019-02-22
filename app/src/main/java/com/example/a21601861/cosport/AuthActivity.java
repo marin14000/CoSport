@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.a21601861.cosport.UserPackage.CreateUser;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -56,18 +58,22 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     public void val_click(View view){
-        String mdp= ((TextView)findViewById(R.id.mdp)).getText().toString();
-        String log= ((TextView)findViewById(R.id.login)).getText().toString();
-        if(log.equals("admin")){
-            if(mdp.equals("0123456789")){
-                this.write(log);
-                this.start(log);
+        if(view.getId()==R.id.val_login) {
+            String mdp = ((TextView) findViewById(R.id.mdp)).getText().toString();
+            String log = ((TextView) findViewById(R.id.login)).getText().toString();
+            if (log.equals("admin")) {
+                if (mdp.equals("0123456789")) {
+                    this.write(log);
+                    this.start(log);
+                }
+            } else {
+                Toast.makeText(getApplicationContext(), "Non connecté", Toast.LENGTH_SHORT).show();
             }
         }
-        else {
-            Toast.makeText(getApplicationContext(), "Non connecté", Toast.LENGTH_SHORT).show();
+        else if(view.getId()==R.id.val_crea){
+            Intent i=new Intent(this.getApplicationContext(),CreateUser.class);
+            startActivity(i);
         }
-
     }
     private void write(String toWrite){
         fiUserAcc.setWritable(true);
@@ -80,7 +86,9 @@ public class AuthActivity extends AppCompatActivity {
 
     public static void deco(Context c){
         Intent i=new Intent(c,AuthActivity.class);
-        fiUserAcc.delete();
+        if(fiUserAcc.exists()) {
+            fiUserAcc.delete();
+        }
         c.startActivity(i);
     }
     @Override

@@ -42,7 +42,7 @@
                 android:id="@+id/act_purpose"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:onClick="onClickListenner">
+                android:onClick="onClickOnMenu">
 
                 <ImageView
                     android:layout_width="wrap_content"

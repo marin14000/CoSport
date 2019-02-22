@@ -49,8 +49,8 @@ public class DataTest {
 
 
     private static List<User> userList=new ArrayList<>(Arrays.asList((User)
-            new UserImp("http://192.168.1.1/images/sans-titre.png","toto"),
-            new UserImp("https://cdn.icon-icons.com/icons2/632/PNG/512/user_icon-icons.com_57997.png","tota"),
+            new UserImp("http://ubuntu-stream.ddns.net:1278/img/homme.png","toto"),
+            new UserImp("http://ubuntu-stream.ddns.net:1278/img/femme.png","tota"),
             new UserImp(R.mipmap.tete,"toti"),
             new UserImp(R.mipmap.tete,"tooa"),
             new UserImp(R.mipmap.tete,"tote"),
@@ -64,7 +64,7 @@ public class DataTest {
             new UserImp(R.mipmap.tete,"adrien")
     ));
 
-    public static ArrayList<ActivityDesc> activity=new ArrayList<>(Arrays.asList((ActivityDesc)
+    public static ArrayList<ActivityDesc> activityUnsorted=new ArrayList<>(Arrays.asList((ActivityDesc)
             new ActivityDescImp(R.mipmap.escalade, "Escalade", "suaps", date1,userList.get(0).getId()),
             new ActivityDescImp(R.mipmap.marche,"Marche","chemin vert", date2,userList.get(1).getId()),
             new ActivityDescImp(R.mipmap.natation,"Natation","suaps", date3,userList.get(2).getId()),
@@ -83,6 +83,7 @@ public class DataTest {
             new ActivityDescImp(R.mipmap.velo,"Vélo","Clécy",date15,userList.get(1).getId())
     ));
 
+    public static ArrayList<ActivityDesc> activity =ActivityDescImp.sort(activityUnsorted);
     static{
         Random r=new Random();
         for(ActivityDesc act: activity){
@@ -96,5 +97,5 @@ public class DataTest {
         }
     }
 
-    public static User currentUser=new UserImp("http://192.168.1.1/images/tete.png","currentUser");
+    public static User currentUser=new UserImp("http://ubuntu-stream.ddns.net:1278/img/homme.png","admin");
 }

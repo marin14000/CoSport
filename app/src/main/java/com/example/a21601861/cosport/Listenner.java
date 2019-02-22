@@ -1,6 +1,7 @@
 package com.example.a21601861.cosport;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.Scene;
 import android.transition.Slide;
@@ -9,7 +10,9 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.a21601861.cosport.Activity.CreateActivity;
 import com.example.a21601861.cosport.UserPackage.User;
 import com.squareup.picasso.Picasso;
 
@@ -38,7 +41,12 @@ public class Listenner extends AppCompatActivity {
 
             case R.id.deco:
                 AuthActivity.deco(getApplicationContext());
+                break;
 
+            case R.id.act_purpose:
+                Intent i=new Intent(getApplicationContext(), CreateActivity.class);
+                startActivity(i);
+                break;
         }
 
     }
@@ -49,5 +57,10 @@ public class Listenner extends AppCompatActivity {
         else {
             imageView.setImageResource(user.getProfilPicture());
         }
+    }
+
+
+    public void setUserName(User u, TextView textView){
+        textView.setText(u.getName());
     }
 }

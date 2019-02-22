@@ -41,10 +41,10 @@
             android:id="@+id/val_login"
             android:layout_width="311dp"
             android:layout_height="37dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="6dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             android:background="#42A5F5"
             android:onClick="val_click"
             android:text="@string/connexion"
@@ -104,5 +104,23 @@
             app:layout_constraintTop_toBottomOf="@+id/login" />
 
     </android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:background="#42A5F5"
+        android:onClick="val_click"
+        android:text="@string/inscr"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
+        app:layout_constraintVertical_bias="0.882" />
 
 </android.support.constraint.ConstraintLayout>

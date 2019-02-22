@@ -22,5 +22,22 @@
     <string name="val">Valider</string>
     <string name="login">Identifiant:</string>
     <string name="connexion">connexion</string>
+    <string name="nametext">Votre nom:</string>
+    <string name="firstName">Votre nom:</string>
+    <string name="emailText">Votre e-mail:</string>
+    <string name="logText">Votre pseudo:</string>
+    <string name="mdpText">Votre mot de passe:</string>
+    <string name="mdp2">Confirmez le:</string>
+    <string name="prenom">Votre prénom:</string>
+    <string name="descr">Votre description</string>
+    <string name="textSexe">Votre genre:</string>
+    <string name="hText">Homme</string>
+    <string name="fText">Femme</string>
+    <string name="aucun" />
+    <string name="naText">Aucun</string>
+    <string name="txtAge">Votre age:</string>
+    <string name="textLieu">Lieu:</string>
+    <string name="act_picker_text">Activitée:</string>
+    <string name="inscr">Inscrivez-vous !</string>
 
 </resources>
