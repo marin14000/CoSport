@@ -91,13 +91,13 @@
                 android:layout_height="10dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/bottom_border"
+                android:background="@drawable/line"
                 android:visibility="visible">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bottom_border" />
+                    android:background="@drawable/line" />
             </TableRow>
 
             <TableRow

@@ -14,7 +14,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class AuthActivity extends AppCompatActivity {
+public class
+AuthActivity extends AppCompatActivity {
     private static File fiUserAcc;
 
     @Override
