@@ -97,5 +97,8 @@ public class DataTest {
         }
     }
 
-    public static User currentUser=new UserImp("http://ubuntu-stream.ddns.net:1278/img/homme.png","admin");
+    public static User currentUser=new UserImp("http://ubuntu-stream.ddns.net:1278/img/homme.png","admin","marin","Dorange",20,"marin.do@hotmail.fr","0123456789","h","" +
+            "Passioné d'escalade je pratique ce sport depuis 4 à 5 ans. Depuis peu je me suis mit à décuvrir et à aimer l'escalade en extérieur malheuresement " +
+            "il est difficile de trouver des partenaire voulant grim^pé avec moi c'est donc pour cela que j'ai créé Co-Sport une application de rencontre pour les amoureux du sport" +
+            "En effet cette application permet de rencontrer d'autre gens pour faire du sport.");
 }

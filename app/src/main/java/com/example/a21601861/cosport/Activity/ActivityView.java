@@ -72,6 +72,7 @@ public class ActivityView extends Listenner {
             row.addView(verLayout);
             list.addView(row);
 
+            
         }
     }
     private void addCreator(){

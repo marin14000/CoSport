@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.a21601861.cosport.Activity.CreateActivity;
+import com.example.a21601861.cosport.DATA.DataTest;
+import com.example.a21601861.cosport.UserPackage.CreateUser;
 import com.example.a21601861.cosport.UserPackage.User;
 import com.squareup.picasso.Picasso;
 
@@ -28,6 +30,7 @@ public class Listenner extends AppCompatActivity {
         if(scene_menu==null){
             scene_menu=new Scene((ViewGroup)findViewById(R.id.menu));
         }
+        Intent i;
         switch (view.getId()) {
             case R.id._icon_menu:
                 TransitionManager.go(scene_menu, slideTransition);
@@ -44,9 +47,13 @@ public class Listenner extends AppCompatActivity {
                 break;
 
             case R.id.act_purpose:
-                Intent i=new Intent(getApplicationContext(), CreateActivity.class);
+                i=new Intent(getApplicationContext(), CreateActivity.class);
                 startActivity(i);
                 break;
+            case R.id.goProfil:
+                i=new Intent(getApplicationContext(), CreateUser.class);
+                i.putExtra("UserId", DataTest.currentUser.getId());
+                startActivity(i);
         }
 
     }

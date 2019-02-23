@@ -7,4 +7,12 @@ public interface User {
     String getURLOfProfilPicture();
     boolean hasURLProfilPicture();
     String getName();
+    int getAge();
+    String getGenre();
+    String getDescription();
+    String getPrenom();
+    String getNom();
+    String getMail();
+    String getMDP();
+
 }

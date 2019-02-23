@@ -144,7 +144,7 @@ public class MainActivity extends com.example.a21601861.cosport.Listenner {
         LinearLayout cont;
         Calendar actCal;
         System.out.println(actName);
-        for(int i=0;i<10;i++) {     //affiche 10 fois les meme act pour genere plus d'activite facilement
+        //for(int i=0;i<10;i++) {     //affiche 10 fois les meme act pour genere plus d'activite facilement
             for (ActivityDesc act : DataTest.activity) {
                 if(act.getDate().after(selectCal) && (actName.equals("tout") || actName.equals(act.getName()))) {
                     row = new TableRow(mainActView.getContext());
@@ -191,7 +191,7 @@ public class MainActivity extends com.example.a21601861.cosport.Listenner {
                     row.addView(cont);
                     mainActView.addView(row);
                 }
-            }
+            //}
         }
     }
 
