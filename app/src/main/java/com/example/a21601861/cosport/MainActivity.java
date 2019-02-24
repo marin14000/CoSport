@@ -194,6 +194,9 @@ public class MainActivity extends com.example.a21601861.cosport.Listenner {
             //}
         }
     }
-
+    @Override
+    public void onBackPressed(){
+        AuthActivity.deco(getApplicationContext());
+    }
 
 }

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.a21601861.cosport.DATA.DataTest;
 import com.example.a21601861.cosport.Listenner;
+import com.example.a21601861.cosport.MainActivity;
 import com.example.a21601861.cosport.R;
 import com.example.a21601861.cosport.UserPackage.User;
 import com.example.a21601861.cosport.UserPackage.UserImp;
@@ -107,5 +108,10 @@ public class ActivityView extends Listenner {
             this.act.addUser(DataTest.currentUser.getId());
         }
     }
-
+    @Override
+    public void onBackPressed(){
+        Intent i=new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
+        finish();
+    }
 }

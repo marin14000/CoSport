@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.a21601861.cosport.Listenner;
+import com.example.a21601861.cosport.MainActivity;
 import com.example.a21601861.cosport.R;
 
 public class UserView extends Listenner {
@@ -24,5 +25,12 @@ public class UserView extends Listenner {
             ((TextView)findViewById(R.id.mailtxt)).setText(u.getMail());
             ((TextView)findViewById(R.id.descrtxt)).setText(u.getDescription());
         }
+    }
+
+    @Override
+    public void onBackPressed(){
+        Intent i=new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
+        finish();
     }
 }
