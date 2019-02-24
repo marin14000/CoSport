@@ -56,7 +56,7 @@ public class UserBuilder {
         boolean code=true;
         this.error="";
         if(prenom.equals("")){
-            error+="le prenom ne devrait pas être vide ";
+            error+="le prénom ne devrait pas être vide ";
             code=false;
         }
         if(nom.equals("")){
@@ -69,7 +69,7 @@ public class UserBuilder {
         }
 
         if(log.equals("")){
-            error+="le pseudos ne devrait pas être vide ";
+            error+="le pseudo ne devrait pas être vide ";
             code=false;
         }
         if(mdp1.equals("") || mdp2.equals("")){
@@ -77,15 +77,15 @@ public class UserBuilder {
             code=false;
         }
         else if(!mdp1.equals(mdp2)){
-            error+="les mot de passe devrait correspondre ";
+            error+="les mots de passe devraient correspondre ";
             code=false;
         }
         if(genre.equals("")){
             error+="le genre ne devrait pas être vide ";
             code=false;
         }
-        if(age<0){
-            error+="l'age devrait être positif ";
+        if(age<1){
+            error+="l'âge devrait être positif ";
             code=false;
         }
         return code;

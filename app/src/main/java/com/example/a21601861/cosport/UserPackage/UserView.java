@@ -20,7 +20,7 @@ public class UserView extends Listenner {
             ((TextView)findViewById(R.id.pseudostxt)).setText(u.getName());
             ((TextView)findViewById(R.id.prenomtxt)).setText(u.getPrenom());
             ((TextView)findViewById(R.id.nomtxt)).setText(u.getNom());
-            ((TextView)findViewById(R.id.agetxt)).setText(u.getAge()+" Ans");
+            ((TextView)findViewById(R.id.agetxt)).setText(u.getAge()+" ans");
             ((TextView)findViewById(R.id.genretxt)).setText(UserImp.decode(u.getGenre()));
             ((TextView)findViewById(R.id.mailtxt)).setText(u.getMail());
             ((TextView)findViewById(R.id.descrtxt)).setText(u.getDescription());

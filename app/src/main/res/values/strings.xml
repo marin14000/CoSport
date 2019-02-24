@@ -5,23 +5,23 @@
     <string name="_time_Picker">Horaires</string>
     <string name="_val_cal">Validez</string>
     <string name="name">UserName</string>
-    <string name="add_act_text">Proposer une activitée</string>
+    <string name="add_act_text">Proposer une activité</string>
     <string name="profil_text">Profil</string>
     <string name="param_text">Paramètres</string>
     <string name="assist_text">Assistance</string>
     <string name="deco_text">Déconnexion</string>
-    <string name="descr_icon_menu">Icone Menu</string>
-    <string name="act_purpose_descr">Icone ajout</string>
-    <string name="descr_go_profil">Icone Profil</string>
-    <string name="descr_go_param">Icone Paramètres</string>
+    <string name="descr_icon_menu">Icône Menu</string>
+    <string name="act_purpose_descr">Icône ajout</string>
+    <string name="descr_go_profil">Icône Profil</string>
+    <string name="descr_go_param">Icône Paramètres</string>
     <string name="descr_return_menu">Retour</string>
     <string name="descr_pict_profil">Photo de profil</string>
     <string name="text_Participe">J\'y participe !</string>
     <string name="titleListParti">Liste des participants</string>
-    <string name="mdp">Mots de passe</string>
+    <string name="mdp">Mot de passe</string>
     <string name="val">Valider</string>
     <string name="login">Identifiant:</string>
-    <string name="connexion">connexion</string>
+    <string name="connexion">Connexion</string>
     <string name="nametext">Votre nom:</string>
     <string name="firstName">Votre nom:</string>
     <string name="emailText">Votre e-mail:</string>
@@ -33,12 +33,11 @@
     <string name="textSexe">Votre genre:</string>
     <string name="hText">Homme</string>
     <string name="fText">Femme</string>
-    <string name="aucun" />
     <string name="naText">Aucun</string>
-    <string name="txtAge">Votre age:</string>
+    <string name="txtAge">Votre âge:</string>
     <string name="textLieu">Lieu:</string>
-    <string name="act_picker_text">Activitée:</string>
+    <string name="act_picker_text">Activité:</string>
     <string name="inscr">Inscrivez-vous !</string>
-    <string name="disc">Passioné d\'escalade je pratique ce sport depuis 4 à 5 ans. Depuis peu je me suis mit à décuvrir et à aimer l\'escalade en extérieur malheuresement  il est difficile de trouver des partenaire voulant grimpé avec moi c\'est donc pour cela que j\'ai créé Co-Sport une application de rencontre pour les amoureux du sport. En effet cette application permet de rencontrer d\'autre gens pour faire du sport.</string>
+
 
 </resources>
