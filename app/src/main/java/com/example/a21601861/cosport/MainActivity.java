@@ -1,11 +1,13 @@
 package com.example.a21601861.cosport;
 
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.app.TimePickerDialog.OnTimeSetListener;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.transition.Fade;
 import android.transition.Scene;
 import android.transition.Transition;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CalendarView;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -50,15 +53,6 @@ public class MainActivity extends com.example.a21601861.cosport.Listenner {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        CalendarView cv= findViewById(R.id.CalPicker);
-        cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int y, int m, int d) {
-                erraseActivityTableLayout();
-                calendar.set(y,m,d);
-                refreshActivityTableLayout(calendar,actListChoose);
-            }
-        });
         ((Spinner)findViewById(R.id._spinner_activity)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -88,24 +82,25 @@ public class MainActivity extends com.example.a21601861.cosport.Listenner {
         scene_cal =new Scene((ViewGroup)findViewById(R.id._scroll_cal));
 
         refreshActivityTableLayout(calendar,actListChoose);
-
+        setUserName(DataTest.currentUser,((TextView)findViewById(R.id.currentusername)));
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void onClickListenner(View view){
         switch(view.getId()){
             case R.id._View_Calendar:
-                if(findViewById(R.id._scroll_cal).getVisibility()==View.GONE) {
-                    TransitionManager.go(scene_cal, fadeTransition);
-                    findViewById(R.id._scroll_cal).setVisibility(View.VISIBLE);
-                }
-                else {
-                    TransitionManager.go(scene_cal, fadeTransition);
-                    findViewById(R.id._scroll_cal).setVisibility(View.GONE);
-                }
+                DatePickerDialog dp=new DatePickerDialog(getApplicationContext());
+                dp.updateDate(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
+                dp.setOnDateSetListener(new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int y, int m, int dayOfMonth) {
+                        calendar.set(y,m,dayOfMonth);
+                    }
+                });
+                dp.show();
                 break;
 
             case R.id._view_timePicker:
-                System.out.println("hello");
                 TimePickerDialog timePicker=new TimePickerDialog(MainActivity.this, new OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int h, int min) {
@@ -146,7 +141,7 @@ public class MainActivity extends com.example.a21601861.cosport.Listenner {
         System.out.println(actName);
         //for(int i=0;i<10;i++) {     //affiche 10 fois les meme act pour genere plus d'activite facilement
             for (ActivityDesc act : DataTest.activity) {
-                if(act.getDate().after(selectCal) && (actName.equals("tout") || actName.equals(act.getName()))) {
+                if(act.getDate().after(selectCal) && (actName.equals("Tout") || actName.equals(act.getName()))) {
                     row = new TableRow(mainActView.getContext());
                     row.setId(View.generateViewId());
                     row.setOnClickListener(this.activityClickListenner);

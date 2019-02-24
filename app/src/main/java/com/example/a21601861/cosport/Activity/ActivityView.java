@@ -3,6 +3,7 @@ package com.example.a21601861.cosport.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
@@ -89,7 +90,7 @@ public class ActivityView extends Listenner {
     }
     private void addCreator(){
         ((TextView)findViewById(R.id.Creator)).setText("Organisateur: "+UserImp.findUserById(act.getCreatorId()).getName());
-        setUserProfilImage(((ImageView)findViewById(R.id.imageCreator)),this,UserImp.findUserById(act.getCreatorId()));
+        setUserProfilImage(((ImageView)findViewById(R.id.imageCreator)),getApplicationContext(),UserImp.findUserById(act.getCreatorId()));
         findViewById(R.id.creatorLayout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,7 +108,15 @@ public class ActivityView extends Listenner {
         else {
             this.act.addUser(DataTest.currentUser.getId());
         }
+        this.refrechUserList();
     }
+
+    private void refrechUserList() {
+        ViewGroup v=findViewById(R.id.ListUser);
+        v.removeAllViews();
+        this.addUserToList();
+    }
+
     @Override
     public void onBackPressed(){
         Intent i=new Intent(getApplicationContext(), MainActivity.class);

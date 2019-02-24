@@ -49,8 +49,10 @@ public class DataTest {
 
 
     private static List<User> userList=new ArrayList<>(Arrays.asList((User)
-            new UserImp("http://ubuntu-stream.ddns.net:1278/img/homme.png","toto","catherine","de Saint Jores",20,"dsjcatherine@gmail.com","456789","f","blablabla"),
-            new UserImp("http://ubuntu-stream.ddns.net:1278/img/femme.png","tota","julien","dupuis",22,"dupuis@gmail.com","1599","h","blablabla"),
+            //new UserImp("http://ubuntu-stream.ddns.net:1278/img/homme.png","toto","catherine","de Saint Jores",20,"dsjcatherine@gmail.com","456789","f","blablabla"),
+                    new UserImp("http://192.168.1.15/images/homme.png","toto","catherine","de Saint Jores",20,"dsjcatherine@gmail.com","456789","f","blablabla"),
+            //new UserImp("http://ubuntu-stream.ddns.net:1278/img/femme.png","tota","julien","dupuis",22,"dupuis@gmail.com","1599","h","blablabla"),
+            new UserImp("http://192.168.1.15/images/femme.png","tota","julien","dupuis",22,"dupuis@gmail.com","1599","h","blablabla"),
             new UserImp(R.mipmap.tete,"toti","marine","bleu",25,"marine@gmail.com","7532","f","blablabla"),
             new UserImp(R.mipmap.tete,"tooa","caroline","delahaye",35,"delahaye@unicaen.fr","4521","f","blablavbla"),
             new UserImp(R.mipmap.tete,"tote","bruno","lorange",45,"lorange@hotmail.fr","78521","h","blablabla"),
@@ -97,7 +99,7 @@ public class DataTest {
         }
     }
 
-    public static User currentUser=new UserImp("http://ubuntu-stream.ddns.net:1278/img/homme.png","admin","marin","Dorange",20,"marin.do@hotmail.fr","0123456789","h","" +
+    public static User currentUser=new UserImp("http://192.168.1.15/images/homme.png","admin","marin","Dorange",20,"marin.do@hotmail.fr","0123456789","h","" +
             "Passioné d'escalade je pratique ce sport depuis 4 à 5 ans. Depuis peu je me suis mit à décuvrir et à aimer l'escalade en extérieur malheuresement " +
             "il est difficile de trouver des partenaire voulant grim^pé avec moi c'est donc pour cela que j'ai créé Co-Sport une application de rencontre pour les amoureux du sport" +
             "En effet cette application permet de rencontrer d'autre gens pour faire du sport.");

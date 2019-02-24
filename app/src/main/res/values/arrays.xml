@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="activities">
-        <item>tout</item>
+        <item>Tout</item>
+        <item>Vélo</item>
+        <item>Natation</item>
+        <item>Escalade</item>
+        <item>Marche</item>
+    </string-array>
+
+    <string-array name="actChooseList">
         <item>Vélo</item>
         <item>Natation</item>
         <item>Escalade</item>
