@@ -49,19 +49,19 @@ public class DataTest {
 
 
     private static List<User> userList=new ArrayList<>(Arrays.asList((User)
-            new UserImp("http://ubuntu-stream.ddns.net:1278/img/homme.png","toto"),
-            new UserImp("http://ubuntu-stream.ddns.net:1278/img/femme.png","tota"),
-            new UserImp(R.mipmap.tete,"toti"),
-            new UserImp(R.mipmap.tete,"tooa"),
-            new UserImp(R.mipmap.tete,"tote"),
-            new UserImp(R.mipmap.tete,"tito"),
-            new UserImp(R.mipmap.tete,"tato"),
+            new UserImp("http://ubuntu-stream.ddns.net:1278/img/homme.png","toto","catherine","de Saint Jores",20,"dsjcatherine@gmail.com","456789","f","blablabla"),
+            new UserImp("http://ubuntu-stream.ddns.net:1278/img/femme.png","tota","julien","dupuis",22,"dupuis@gmail.com","1599","h","blablabla"),
+            new UserImp(R.mipmap.tete,"toti","marine","bleu",25,"marine@gmail.com","7532","f","blablabla"),
+            new UserImp(R.mipmap.tete,"tooa","caroline","delahaye",35,"delahaye@unicaen.fr","4521","f","blablavbla"),
+            new UserImp(R.mipmap.tete,"tote","bruno","lorange",45,"lorange@hotmail.fr","78521","h","blablabla"),
+            new UserImp(R.mipmap.tete,"tito","louise","attaque",19,"attaque@gmail.com","8426","f","blablabla"),
+            new UserImp(R.mipmap.tete,"tato","charlotte","la Fourmi",24,"charlotelafourmi@gmail.com","1535","f","blablabla"),
 
-            new UserImp(R.mipmap.tete,"ben  "),
-            new UserImp(R.mipmap.tete,"catherine"),
-            new UserImp(R.mipmap.tete,"marin"),
-            new UserImp(R.mipmap.tete,"julien"),
-            new UserImp(R.mipmap.tete,"adrien")
+            new UserImp(R.mipmap.tete,"ben","benjamin","de l'amour",23,"delamour@gmail.com","mimomu","h","blablabla"),
+            new UserImp(R.mipmap.tete,"catherine","catherine","delarue",30,"delarue@hotmail.fr","qgqkejfrgjqkeng","f","blablabla"),
+            new UserImp(R.mipmap.tete,"marin","marin","lechamps",29,"lechamps@gmail.com","zzf64Z","h","blablabla"),
+            new UserImp(R.mipmap.tete,"julien","julien","pataproute",35,"pataproue@gmail.com","rglsk","h","blablabla"),
+            new UserImp(R.mipmap.tete,"adrien","adrien","delaplante",19,"delaplante@gmail.com","78+45","h","blablabla")
     ));
 
     public static ArrayList<ActivityDesc> activityUnsorted=new ArrayList<>(Arrays.asList((ActivityDesc)

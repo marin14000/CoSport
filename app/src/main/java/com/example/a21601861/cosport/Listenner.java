@@ -16,6 +16,7 @@ import com.example.a21601861.cosport.Activity.CreateActivity;
 import com.example.a21601861.cosport.DATA.DataTest;
 import com.example.a21601861.cosport.UserPackage.CreateUser;
 import com.example.a21601861.cosport.UserPackage.User;
+import com.example.a21601861.cosport.UserPackage.UserView;
 import com.squareup.picasso.Picasso;
 
 public class Listenner extends AppCompatActivity {
@@ -51,7 +52,7 @@ public class Listenner extends AppCompatActivity {
                 startActivity(i);
                 break;
             case R.id.goProfil:
-                i=new Intent(getApplicationContext(), CreateUser.class);
+                i=new Intent(getApplicationContext(), UserView.class);
                 i.putExtra("UserId", DataTest.currentUser.getId());
                 startActivity(i);
         }

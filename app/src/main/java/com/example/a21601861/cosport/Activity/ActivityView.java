@@ -1,6 +1,5 @@
 package com.example.a21601861.cosport.Activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,13 +15,15 @@ import com.example.a21601861.cosport.Listenner;
 import com.example.a21601861.cosport.R;
 import com.example.a21601861.cosport.UserPackage.User;
 import com.example.a21601861.cosport.UserPackage.UserImp;
-import com.squareup.picasso.Picasso;
+import com.example.a21601861.cosport.UserPackage.UserView;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class ActivityView extends Listenner {
     private ActivityDesc act;
+    private HashMap<Integer,User> rowLinkUser=new HashMap<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +59,16 @@ public class ActivityView extends Listenner {
         for (int idUser:this.act.getUserList() ) {
             User user= UserImp.findUserById(idUser);
             TableRow row=new TableRow(list.getContext());
+            row.setId(View.generateViewId());
+            rowLinkUser.put(row.getId(),user);
+            row.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i=new Intent(getApplicationContext(), UserView.class);
+                    i.putExtra("UserId",rowLinkUser.get(view.getId()).getId());
+                    startActivity(i);
+                }
+            });
             LinearLayout verLayout=new LinearLayout(row.getContext());
             verLayout.setOrientation(LinearLayout.HORIZONTAL);
             ImageView userImage=new ImageView(verLayout.getContext());
@@ -72,12 +83,20 @@ public class ActivityView extends Listenner {
             row.addView(verLayout);
             list.addView(row);
 
-            
+
         }
     }
     private void addCreator(){
         ((TextView)findViewById(R.id.Creator)).setText("Organisateur: "+UserImp.findUserById(act.getCreatorId()).getName());
         setUserProfilImage(((ImageView)findViewById(R.id.imageCreator)),this,UserImp.findUserById(act.getCreatorId()));
+        findViewById(R.id.creatorLayout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),UserView.class);
+                i.putExtra("UserId",act.getCreatorId());
+                startActivity(i);
+            }
+        });
     }
 
     public void ClickOnSwitch(View view){
