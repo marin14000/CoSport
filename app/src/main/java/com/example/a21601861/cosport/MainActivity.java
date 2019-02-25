@@ -89,7 +89,7 @@ public class MainActivity extends com.example.a21601861.cosport.Listenner {
     public void onClickListenner(View view){
         switch(view.getId()){
             case R.id._View_Calendar:
-                DatePickerDialog dp=new DatePickerDialog(getApplicationContext());
+                DatePickerDialog dp=new DatePickerDialog(view.getContext());
                 dp.updateDate(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
                 dp.setOnDateSetListener(new DatePickerDialog.OnDateSetListener() {
                     @Override

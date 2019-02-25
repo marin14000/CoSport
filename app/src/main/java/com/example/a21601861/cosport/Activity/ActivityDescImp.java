@@ -71,7 +71,7 @@ public class ActivityDescImp implements ActivityDesc {
 
     @Override
     public boolean haveUser(int id) {
-        return this.idUserParticipate.contains((Object) id);
+        return this.idUserParticipate.contains(id);
     }
 
     @Override
