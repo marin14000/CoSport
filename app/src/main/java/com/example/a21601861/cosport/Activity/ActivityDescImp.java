@@ -1,6 +1,8 @@
 package com.example.a21601861.cosport.Activity;
 
 import com.example.a21601861.cosport.R;
+import com.example.a21601861.cosport.UserPackage.User;
+import com.example.a21601861.cosport.http.DataStorageAccess;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -18,20 +20,31 @@ public class ActivityDescImp implements ActivityDesc {
     private final String name;
     private final String place;
     private final Calendar date;
-    private final Integer idCreator;
-    private List<Integer> idUserParticipate=new ArrayList<>();
+    private List<User> userParticipate =new ArrayList<>();
+    private int creator;
 
-    public ActivityDescImp(int idIcon, String name, String place, Calendar date,int idCreator) {
+    public ActivityDescImp(int idIcon, String name, String place, Calendar date,int creator) {
         this.idIcon=idIcon;
         this.id=ActivityDescImp.ID;
         ActivityDescImp.ID++;
         this.name=name;
         this.place=place;
         this.date=date;
-        this.idCreator=idCreator;
+        this.creator =creator;
         ActivityDescImp.ACTIVITYLIST.put(this.id,this);
 
     }
+
+    public ActivityDescImp(int idIcon, String name, String place, Calendar date, int creator,String id) {
+        this.idIcon=idIcon;
+        this.id= Integer.parseInt(id);
+        this.name=name;
+        this.place=place;
+        this.date=date;
+        this.creator =creator;
+        ActivityDescImp.ACTIVITYLIST.put(this.id,this);
+    }
+
     @Override
     public int getIconId() {
         return this.idIcon;
@@ -57,52 +70,52 @@ public class ActivityDescImp implements ActivityDesc {
         return this.date;
     }
     @Override
-    public void addUser(int id){
-        this.idUserParticipate.add(id);
-    }
-    @Override
-    public void removeUser(int id){
-        this.idUserParticipate.remove((Object)id);
-    }
-    @Override
-    public List<Integer> getUserList(){
-        return this.idUserParticipate;
+    public void addUser(User user){
+        this.userParticipate.add(user);
     }
 
     @Override
-    public boolean haveUser(int id) {
-        return this.idUserParticipate.contains(id);
+    public void addUserList(List<User> listUser) {
+        this.userParticipate.addAll(listUser);
     }
 
     @Override
-    public int getCreatorId(){
-        return this.idCreator;
+    public void removeUser(int user){
+        for (User u:userParticipate) {
+            if(u.getId()==user){
+                userParticipate.remove(u);
+                return;
+            }
+        }
+
+    }
+    @Override
+    public List<User> getUserList(){
+        return this.userParticipate;
+    }
+
+    @Override
+    public boolean haveUser(int user) {
+        for (User u:this.userParticipate
+             ) {
+            if(user==u.getId()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public User getCreator(){
+        DataStorageAccess dsa=DataStorageAccess.getInstance();
+        dsa.getUser(this.creator);
+        return dsa.getResult().getUser();
     }
     public static ActivityDesc getActivityById(int id){
         return ActivityDescImp.ACTIVITYLIST.get(id);
     }
 
-    public static int getIcon(String act) {
-        switch (act){
-            case "Vélo":
-                return R.mipmap.velo;
-
-            case "Natation":
-                return R.mipmap.natation;
-
-            case "Escalade":
-                return R.mipmap.escalade;
-
-            case "Marche":
-                return R.mipmap.marche;
-
-            default:
-                return -1;
-
-        }
-    }
-
-    public static ArrayList<ActivityDesc> sort(ArrayList<ActivityDesc> activityUnsorted) {
+    public static ArrayList<ActivityDesc> sort(List<ActivityDesc> activityUnsorted) {
         PriorityQueue<ActivityDesc> pq=new PriorityQueue<>(activityUnsorted.size(),new ActivityComparator());
         for(ActivityDesc act : activityUnsorted){
             pq.add(act);
@@ -112,5 +125,23 @@ public class ActivityDescImp implements ActivityDesc {
             listact.add(pq.poll());
         }
         return listact;
+    }
+
+    public static int getIconFor(String act) {
+        switch (act){
+            case "Vélo":
+                return R.mipmap.velo;
+            case "Natation":
+                return R.mipmap.natation;
+            case "Escalade":
+                return R.mipmap.escalade;
+            case "Marche":
+                return R.mipmap.marche;
+        }
+        return -1;
+    }
+    @Override
+    public String toString(){
+        return this.name;
     }
 }

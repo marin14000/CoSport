@@ -13,6 +13,7 @@ public class UserBuilder {
     private String desc="";
     private int age=-1;
     private String error="";
+    private int id;
 
     public UserBuilder setNom(String nom){
         this.nom=nom;
@@ -96,6 +97,10 @@ public class UserBuilder {
     }
 
     public User build(){
-        return new UserImp(R.mipmap.tete,log,prenom,nom,age,mail,mdp1,genre,desc);
+        return new UserImp(R.mipmap.tete,log,prenom,nom,age,mail,mdp1,genre,desc,id);
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

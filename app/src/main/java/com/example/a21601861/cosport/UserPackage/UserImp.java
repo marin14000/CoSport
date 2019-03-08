@@ -1,13 +1,8 @@
 package com.example.a21601861.cosport.UserPackage;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class UserImp implements User {
-    private static Map<Integer,User> USERMAP =new HashMap() ;
     private int idProfilPicture;
-    private String name;
-    private static int IDGEN=0;
+    private String log;
     private int id;
     private String urlProfilPicture;
     private boolean hasURLProfilPicture =false;
@@ -19,27 +14,11 @@ public class UserImp implements User {
     private String mail;
     private String mdp;
 
-    public UserImp(int idProfilPict , String name){
+
+    public UserImp(int idProfilPict , String log,String prenom,String nom,int age,String mail,String mdp,String genre,String desc,int id){
         this.idProfilPicture=idProfilPict;
-        this.name=name;
-        this.id=IDGEN;
-        IDGEN++;
-        USERMAP.put(this.id,this);
-    }
-    public UserImp(String url , String name){
-        this.idProfilPicture=-1;
-        this.urlProfilPicture=url;
-        this.hasURLProfilPicture =true;
-        this.name=name;
-        this.id=IDGEN;
-        IDGEN++;
-        USERMAP.put(this.id,this);
-    }
-    public UserImp(int idProfilPict , String name,String prenom,String nom,int age,String mail,String mdp,String genre,String desc ){
-        this.idProfilPicture=idProfilPict;
-        this.name=name;
-        this.id=IDGEN;
-        IDGEN++;
+        this.log=log;
+        this.id=id;
         this.prenom=prenom;
         this.nom=nom;
         this.age=age;
@@ -47,15 +26,13 @@ public class UserImp implements User {
         this.mdp=mdp;
         this.genreCode=genre;
         this.decr=desc;
-        USERMAP.put(this.id,this);
     }
-    public UserImp(String url , String name,String prenom,String nom,int age,String mail,String mdp,String genre,String desc ){
+    public UserImp(String url , String name,String prenom,String nom,int age,String mail,String mdp,String genre,String desc,int id ){
         this.idProfilPicture=-1;
         this.urlProfilPicture=url;
         this.hasURLProfilPicture =true;
-        this.name=name;
-        this.id=IDGEN;
-        IDGEN++;
+        this.log =name;
+        this.id=id;
         this.prenom=prenom;
         this.nom=nom;
         this.age=age;
@@ -63,8 +40,10 @@ public class UserImp implements User {
         this.mdp=mdp;
         this.genreCode=genre;
         this.decr=desc;
-        USERMAP.put(this.id,this);
     }
+
+
+
     @Override
     public int getId() {
         return this.id;
@@ -86,9 +65,10 @@ public class UserImp implements User {
     }
 
     @Override
-    public String getName() {
-        return this.name;
+    public String getLog() {
+        return this.log;
     }
+
 
     @Override
     public int getAge() {
@@ -102,7 +82,7 @@ public class UserImp implements User {
 
     @Override
     public String getDescription() {
-        return decr;
+        return this.decr;
     }
 
     @Override
@@ -125,9 +105,7 @@ public class UserImp implements User {
         return mdp;
     }
 
-    public static User findUserById(int id){
-        return UserImp.USERMAP.get(id);
-    }
+
 
     public static String decode(String genre) {
         switch (genre){

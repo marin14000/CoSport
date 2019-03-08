@@ -8,16 +8,19 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.example.a21601861.cosport.DATA.DataTest;
+import com.example.a21601861.cosport.DATA.Data;
 import com.example.a21601861.cosport.Listenner;
 import com.example.a21601861.cosport.MainActivity;
 import com.example.a21601861.cosport.R;
 
+import java.util.Arrays;
 import java.util.Calendar;
 
 public class CreateActivity extends Listenner {
@@ -29,14 +32,15 @@ public class CreateActivity extends Listenner {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addactivity);
 
-        System.out.println(cal.get(Calendar.YEAR));
-        System.out.println(cal.get(Calendar.MONTH));
-        System.out.println(cal.get(Calendar.DAY_OF_MONTH));
+        Spinner sp=findViewById(R.id.view_spinner_act);
+        ArrayAdapter<String> dataAdapter= new ArrayAdapter<>(this, R.layout.spinner_item, Arrays.asList(getResources().getStringArray(R.array.actChooseList)));
+        sp.setAdapter(dataAdapter);
 
-        ((Spinner)findViewById(R.id.view_spinner_act)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 act=adapterView.getItemAtPosition(i).toString();
+                ((ImageView)findViewById(R.id.logo_sport)).setImageResource(ActivityDescImp.getIconFor(act));
             }
 
             @Override
@@ -74,8 +78,8 @@ public class CreateActivity extends Listenner {
 
             case R.id.val_crea:
                 place=((TextView)findViewById(R.id.place_text)).getText().toString();
-                ActivityDesc ac=new ActivityDescImp(ActivityDescImp.getIcon(act),act,place,cal, DataTest.currentUser.getId());
-                DataTest.activity.add(1,ac);
+                ActivityDesc ac=new ActivityDescImp(ActivityDescImp.getIconFor(act),act,place,cal, Data.currentUser.getId());
+                Data.activity.add(1,ac);
                 Intent i=new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i);
                 break;

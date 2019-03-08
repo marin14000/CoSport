@@ -6,7 +6,7 @@ public interface User {
     int getProfilPicture();
     String getURLOfProfilPicture();
     boolean hasURLProfilPicture();
-    String getName();
+    String getLog();
     int getAge();
     String getGenre();
     String getDescription();

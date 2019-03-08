@@ -6,16 +6,14 @@ import android.app.TimePickerDialog.OnTimeSetListener;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.transition.Fade;
 import android.transition.Scene;
 import android.transition.Transition;
-import android.transition.TransitionManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.CalendarView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,17 +24,17 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.a21601861.cosport.Activity.ActivityDesc;
+import com.example.a21601861.cosport.Activity.ActivityDescImp;
 import com.example.a21601861.cosport.Activity.ActivityView;
-import com.example.a21601861.cosport.DATA.DataTest;
+import com.example.a21601861.cosport.DATA.Data;
 
-import org.w3c.dom.Text;
-
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class MainActivity extends com.example.a21601861.cosport.Listenner {
+public class MainActivity extends com.example.a21601861.cosport.Listenner{
 
     private final static Calendar calendar=Calendar.getInstance();
     private Map<Integer,ActivityDesc> activityLinkRow=new HashMap<>();
@@ -53,7 +51,13 @@ public class MainActivity extends com.example.a21601861.cosport.Listenner {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ((Spinner)findViewById(R.id._spinner_activity)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+        new Data();
+
+        Spinner sp=findViewById(R.id._spinner_activity);
+        ArrayAdapter<String> dataAdapter= new ArrayAdapter<>(this, R.layout.spinner_item, Arrays.asList(getResources().getStringArray(R.array.activities)));
+        sp.setAdapter(dataAdapter);
+        sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 erraseActivityTableLayout();
@@ -82,7 +86,7 @@ public class MainActivity extends com.example.a21601861.cosport.Listenner {
         scene_cal =new Scene((ViewGroup)findViewById(R.id._scroll_cal));
 
         refreshActivityTableLayout(calendar,actListChoose);
-        setUserName(DataTest.currentUser,((TextView)findViewById(R.id.currentusername)));
+        setUserName(Data.currentUser,((TextView)findViewById(R.id.currentusername)));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -95,6 +99,8 @@ public class MainActivity extends com.example.a21601861.cosport.Listenner {
                     @Override
                     public void onDateSet(DatePicker datePicker, int y, int m, int dayOfMonth) {
                         calendar.set(y,m,dayOfMonth);
+                        erraseActivityTableLayout();
+                        refreshActivityTableLayout(calendar,actListChoose);
                     }
                 });
                 dp.show();
@@ -138,14 +144,16 @@ public class MainActivity extends com.example.a21601861.cosport.Listenner {
         TextView place;
         LinearLayout cont;
         Calendar actCal;
-        System.out.println(actName);
+
         //for(int i=0;i<10;i++) {     //affiche 10 fois les meme act pour genere plus d'activite facilement
-            for (ActivityDesc act : DataTest.activity) {
+            for (ActivityDesc act : Data.activity) {
+                System.out.println(act.getDate().after(selectCal));
                 if(act.getDate().after(selectCal) && (actName.equals("Tout") || actName.equals(act.getName()))) {
                     row = new TableRow(mainActView.getContext());
+                    //row.setBackgroundColor(R.drawable.gradient);
                     row.setId(View.generateViewId());
                     row.setOnClickListener(this.activityClickListenner);
-                    row.setBackgroundResource(R.drawable.bottom_border);
+                    row.setBackgroundResource(R.drawable.gradient);
                     row.setLayoutParams(lp);
                     activityLinkRow.put(row.getId(), act);
                     cont = new LinearLayout(row.getContext());
@@ -170,7 +178,7 @@ public class MainActivity extends com.example.a21601861.cosport.Listenner {
                     }
                     row.setPadding(8, 16, 8, 8);
                     image.setPadding(8, 0, 8, 0);
-                    image.setImageResource(act.getIconId());              //ajustement des parametre des different widgets(met l'image,le text etc etc)
+                    image.setImageResource(ActivityDescImp.getIconFor(act.getName()));              //ajustement des parametre des different widgets(met l'image,le text etc etc)
                     cont.setOrientation(LinearLayout.VERTICAL);
                     title.setText(act.getName());
                     dateHour.setText("Le " + actCal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()) + " " + actCal.get(Calendar.DAY_OF_MONTH) + " " + actCal.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()) + " " + actCal.get(Calendar.YEAR) + " à " + hour + ":" + minute);
@@ -191,7 +199,8 @@ public class MainActivity extends com.example.a21601861.cosport.Listenner {
     }
     @Override
     public void onBackPressed(){
+        System.out.println("Back Pressed");
         AuthActivity.deco(getApplicationContext());
-    }
 
+    }
 }

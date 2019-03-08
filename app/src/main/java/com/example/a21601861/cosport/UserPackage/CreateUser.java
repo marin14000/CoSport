@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.example.a21601861.cosport.DATA.DataTest;
+import com.example.a21601861.cosport.DATA.Data;
 import com.example.a21601861.cosport.MainActivity;
 import com.example.a21601861.cosport.R;
 
@@ -40,9 +40,9 @@ public class CreateUser extends AppCompatActivity {
 
         if(userbuilder.isValid()){
             User u=userbuilder.build();
-            DataTest.currentUser=u;
+            Data.currentUser=u;
             Intent i=new Intent(getApplicationContext(),MainActivity.class);
-            i.putExtra("log",u.getName());
+            i.putExtra("log",u.getLog());
             startActivity(i);
         }
         else{

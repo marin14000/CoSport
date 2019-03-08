@@ -8,7 +8,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.a21601861.cosport.DATA.Data;
 import com.example.a21601861.cosport.UserPackage.CreateUser;
+import com.example.a21601861.cosport.UserPackage.User;
+import com.example.a21601861.cosport.http.DataStorageAccess;
+import com.example.a21601861.cosport.http.Result;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,34 +25,52 @@ public class AuthActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if(fiUserAcc==null){
-            AuthActivity.fiUserAcc=new File(getFilesDir()+"account.txt");
-        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.auth);
-        if(fiUserAcc.exists()){
-            String log = read();
-            start(log);
+        if(AuthActivity.fiUserAcc==null){
+            AuthActivity.fiUserAcc=new File(getFilesDir()+"/account.txt");
+
+            AuthActivity.fiUserAcc.setWritable(true);
+            AuthActivity.fiUserAcc.setReadable(true,true);
+            System.out.println(getFilesDir());
         }
+        if(AuthActivity.fiUserAcc.exists()) {
+            String log = read();
+            System.out.println("log= "+log);
+            if(!log.equals("error") && !log.equals("")) {
+                System.out.println("log: " + log);
+                DataStorageAccess dsa = DataStorageAccess.getInstance();
+                dsa.resarchUser(log);
+                Result r = dsa.getResult();
+                System.out.println("first dsa access");
+                dsa.getUser(r.getIdOfUser());
+                r = dsa.getResult();
+                User u = r.getUser();
+
+                Data.currentUser = u;
+
+                start(log);
+            }
+        }
+
+//        }
     }
 
     private String read() {
-        fiUserAcc.setReadable(true,true);
         String log="";
+        AuthActivity.fiUserAcc.setReadable(true,true);
         try {
-            FileReader fr=new FileReader(fiUserAcc);
+            FileReader fr=new FileReader(AuthActivity.fiUserAcc);
             int x=fr.read();
             while (x!=-1){
                 log+=String.valueOf(x);
                 x=fr.read();
             }
-        fiUserAcc.setReadable(false,false);
-        return log;
+            return log;
         }
         catch (FileNotFoundException e) {}
         catch (IOException e) {}
-        fiUserAcc.setReadable(false,false);
-        return "";
+        return "error";
     }
 
     private void start(String log) {
@@ -61,12 +83,21 @@ public class AuthActivity extends AppCompatActivity {
         if(view.getId()==R.id.val_login) {
             String mdp = ((TextView) findViewById(R.id.mdp)).getText().toString();
             String log = ((TextView) findViewById(R.id.login)).getText().toString();
-            if (log.equals("admin")) {
-                if (mdp.equals("0123456789")) {
-                    this.write(log);
-                    this.start(log);
-                }
-            } else {
+
+            DataStorageAccess dsa=DataStorageAccess.getInstance();
+            dsa.resarchUser(log);
+            Result r=dsa.getResult();
+
+            dsa.getUser(r.getIdOfUser());
+            r=dsa.getResult();
+            User u=r.getUser();
+
+            if(u.getMDP().equals(mdp)){
+                this.write(u.getLog());
+                Data.currentUser=u;
+                this.start(u.getLog());
+            }
+            else{
                 Toast.makeText(getApplicationContext(), "Non connecté", Toast.LENGTH_SHORT).show();
             }
         }
@@ -76,23 +107,25 @@ public class AuthActivity extends AppCompatActivity {
         }
     }
     private void write(String toWrite){
-        fiUserAcc.setWritable(true);
+        AuthActivity.fiUserAcc.setWritable(true,true);
         try {
-            FileWriter fw=new FileWriter(fiUserAcc);
+            FileWriter fw=new FileWriter(AuthActivity.fiUserAcc);
             fw.write(toWrite);
-        } catch (IOException e) {}
-        fiUserAcc.setWritable(false);
+        } catch (IOException e) {
+            e.printStackTrace();}
+        String x=read();
     }
 
     public static void deco(Context c){
         Intent i=new Intent(c,AuthActivity.class);
-        if(fiUserAcc.exists()) {
-            fiUserAcc.delete();
+        if(AuthActivity.fiUserAcc.exists()) {
+            AuthActivity.fiUserAcc.delete();
         }
         c.startActivity(i);
     }
     @Override
     public void onBackPressed(){
+        System.out.println("Back Pressed");
         moveTaskToBack(true);
     }
 }

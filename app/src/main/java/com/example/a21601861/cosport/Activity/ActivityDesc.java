@@ -1,5 +1,7 @@
 package com.example.a21601861.cosport.Activity;
 
+import com.example.a21601861.cosport.UserPackage.User;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -9,9 +11,10 @@ public interface ActivityDesc {
     String getName();
     String getPlace();
     Calendar getDate();
-    void addUser(int id);
-    void removeUser(int id);
-    List<Integer> getUserList();
-    boolean haveUser(int id);
-    int getCreatorId();
+    void addUser(User user);
+    void addUserList(List<User> listUser);
+    void removeUser(int user);
+    List<User> getUserList();
+    boolean haveUser(int user);
+    User getCreator();
 }

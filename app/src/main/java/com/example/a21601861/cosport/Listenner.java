@@ -13,8 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.a21601861.cosport.Activity.CreateActivity;
-import com.example.a21601861.cosport.DATA.DataTest;
-import com.example.a21601861.cosport.UserPackage.CreateUser;
+import com.example.a21601861.cosport.DATA.Data;
 import com.example.a21601861.cosport.UserPackage.User;
 import com.example.a21601861.cosport.UserPackage.UserView;
 import com.squareup.picasso.Picasso;
@@ -44,7 +43,7 @@ public class Listenner extends AppCompatActivity {
                 break;
 
             case R.id.deco:
-                AuthActivity.deco(getApplicationContext());
+                AuthActivity.deco(view.getContext());
                 break;
 
             case R.id.act_purpose:
@@ -53,7 +52,7 @@ public class Listenner extends AppCompatActivity {
                 break;
             case R.id.goProfil:
                 i=new Intent(getApplicationContext(), UserView.class);
-                i.putExtra("UserId", DataTest.currentUser.getId());
+                i.putExtra("UserId", Data.currentUser.getId());
                 startActivity(i);
         }
 
@@ -69,6 +68,6 @@ public class Listenner extends AppCompatActivity {
 
 
     public void setUserName(User u, TextView textView){
-        textView.setText(u.getName());
+        textView.setText(u.getLog());
     }
 }

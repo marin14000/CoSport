@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.example.a21601861.cosport.Listenner;
 import com.example.a21601861.cosport.MainActivity;
 import com.example.a21601861.cosport.R;
+import com.example.a21601861.cosport.http.DataStorageAccess;
 
 public class UserView extends Listenner {
 
@@ -16,8 +17,11 @@ public class UserView extends Listenner {
         Intent i=getIntent();
         if(i.hasExtra("UserId")){
             setContentView(R.layout.userview);
-            User u=UserImp.findUserById(i.getIntExtra("UserId",-1));
-            ((TextView)findViewById(R.id.pseudostxt)).setText(u.getName());
+//            User u=UserImp.findUserById(i.getIntExtra("UserId",-1));
+            DataStorageAccess dsa=DataStorageAccess.getInstance();
+            dsa.getUser(i.getIntExtra("UserId",-1));
+            User u=dsa.getResult().getUser();
+            ((TextView)findViewById(R.id.pseudostxt)).setText(u.getLog());
             ((TextView)findViewById(R.id.prenomtxt)).setText(u.getPrenom());
             ((TextView)findViewById(R.id.nomtxt)).setText(u.getNom());
             ((TextView)findViewById(R.id.agetxt)).setText(u.getAge()+" ans");
